@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { RoutingModule } from './services/routing.module';
+import { UploadModule } from './services/upload.module';
 import { MainComponent } from './main/main.component';
 
 
@@ -21,7 +22,7 @@ import { MainComponent } from './main/main.component';
   imports: [
     BrowserModule, BrowserAnimationsModule, FlexLayoutModule, HttpClientModule, FormsModule,
     MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatExpansionModule, MatProgressBarModule, MatCheckboxModule, MatSliderModule, MatProgressSpinnerModule,
-    RoutingModule
+    RoutingModule, UploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

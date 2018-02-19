@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UploadModule } from '../services/upload.module';
 
 @Component({
   selector: 'app-main',
@@ -7,28 +8,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private upload: UploadModule) { }
 
   ngOnInit() {
   }
 
   project = {
-    name:"",
-    designBoard:[],
-    renderings:[],
-    shoppingList:[]
+    name: "",
+    designBoard: [],
+    renderings: [],
+    shoppingList: []
   }
 
-  print(){
+  print() {
     console.log(this.project);
+    /*var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.project));
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    dlAnchorElem.setAttribute("href", dataStr);
+    dlAnchorElem.setAttribute("download", "scene.json");
+    dlAnchorElem.click();*/
   }
 
-  addDesignBoard(){
+  addDesignBoard() {
     this.project.designBoard.push(
       {
-        "src":"../../assets/image.jpg"
+        "src": "../../assets/image.jpg"
       }
     )
   }
+
+  loadFile($event, area, idx): void {
+    this.upload.getFile($event).subscribe((img) => {
+      console.log(img);
+      this.project.designBoard[idx].src = img;
+    }, (error) => {
+      console.log(error);
+    });
+    ;
+  }
+
+
+
 
 }

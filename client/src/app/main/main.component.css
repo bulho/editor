@@ -25,13 +25,12 @@
 
 .project-area{
     background-color: #f5f5f5;
-    box-shadow: 1px 2px 10px #e0e0e0;
     width: 100%;
     padding: 20px;
     color: #424242;
 }
 .designBoard-image{
-    width: 280px;
+    width: 100%;
     height: auto;
 }
 .designBoard-image img{
