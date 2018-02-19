@@ -12,14 +12,23 @@
   </div>
 
   <div class="project-area">
-    <a id="downloadAnchorElem" style="display:none"></a>
-    <div fxLayout="row" style="padding:20px;">
+    <a id="downloadAnchorElem"></a>
+
+    <div fxLayout="column"fxLayoutAlign="center center">
+      <mat-form-field>
+        <input matInput placeholder="Project Id" [(ngModel)]="project.id">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" style="padding-left:20px; padding-right:20px;">
       <mat-form-field>
         <input matInput placeholder="Project name" [(ngModel)]="project.name">
-      </mat-form-field>
+      </mat-form-field>      
       <span fxFlex></span>
       <button mat-button (click)="print()">Print</button>
     </div>
+
+   
 
     <!-- Design Board -->
     <mat-accordion>
@@ -32,10 +41,10 @@
         <button mat-mini-fab>
           <mat-icon aria-label="add design board" (click)="addDesignBoard()">add</mat-icon>
         </button>
-        <div *ngFor="let item of project.designBoard; let idx = index" class="designBoardItem">
+        <div *ngFor="let item of project.designBoard; let idx = index">
           <div class="designBoard-image">
             <img [src]="item.src" alt="">
-            <input type="file" name="pic" accept="image/*" (change)="loadFile($event,'designBoard',idx)">
+            <input type="file" name="pic" accept="image/*" (change)="loadFile($event,'designBoard',idx)" matt-button>
           </div>
         </div>
       </mat-expansion-panel>

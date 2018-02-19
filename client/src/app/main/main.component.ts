@@ -15,6 +15,7 @@ export class MainComponent implements OnInit {
 
   project = {
     name: "",
+    id:"",
     designBoard: [],
     renderings: [],
     shoppingList: []
