@@ -1,13 +1,9 @@
 <mat-toolbar>
-  <h1>Projeditor</h1>
+  <input type="file" (change)="loadProject($event)" >
   <span fxFlex></span>
-  <button mat-button>
-    Create
+  <button mat-mini-fab (click)="print()" [disabled]="project.name==='' || project.id===''">
+      <mat-icon aria-label="download">file_download</mat-icon>
   </button>
-  <button mat-button>
-    Edit
-  </button>
-  <button mat-button (click)="print()" [disabled]="project.name==='' || project.id===''" >Generate Project</button>
 </mat-toolbar>
 
 <div class="frame" fxLayout="column" fxLayoutAlign="center center">
@@ -34,16 +30,16 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayoutAlign="center center">
-          <button mat-mini-fab class="add-button">
-            <mat-icon aria-label="add design board" (click)="edit('designBoard','add')">add</mat-icon>
+          <button mat-mini-fab class="add-button" (click)="edit('designBoard','add')">
+            <mat-icon aria-label="add design board">add</mat-icon>
           </button>
         </div>
         <div *ngFor="let item of project.designBoard; let idx = index" style="padding-bottom:20px;">
           <div class="ad-image">
-            <img [src]="item.src" alt="">
+            <img [(src)]="item.src" alt="">
           </div>
           <div fxLayout="row" fxLayoutWrap>
-            <input type="file" name="pic" accept="image/*" (change)="loadImg($event,'designBoard',idx)" matt-button>
+            <input type="file" accept="image/*" (change)="loadImg($event,'designBoard',idx)">
             <span fxFlex></span>
             <button mat-button (click)="openDialog('designBoard',idx)">Delete this item</button>
           </div>
@@ -59,8 +55,8 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayoutAlign="center center">
-          <button mat-mini-fab class="add-button">
-            <mat-icon aria-label="add design board" (click)="edit('renderings','add')">add</mat-icon>
+          <button mat-mini-fab class="add-button" (click)="edit('renderings','add')">
+            <mat-icon aria-label="add design board">add</mat-icon>
           </button>
         </div>
         <div *ngFor="let item of project.renderings; let idx = index">
@@ -68,7 +64,7 @@
             <img [src]="item.src" alt="">
           </div>
           <div fxLayout="row" fxLayoutWrap>
-            <input type="file" name="pic" accept="image/*" (change)="loadImg($event,'renderings',idx)" matt-button>
+            <input type="file" accept="image/*" (change)="loadImg($event,'renderings',idx)">
             <span fxFlex></span>
             <button mat-button (click)="openDialog('renderings',idx)">Delete this item</button>
           </div>
@@ -83,12 +79,36 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayoutAlign="center center">
-          <button mat-mini-fab class="add-button">
-            <mat-icon aria-label="add design board" (click)="edit('shoppingList','add')">add</mat-icon>
+          <button mat-mini-fab class="add-button" (click)="edit('shoppingList','add')">
+            <mat-icon aria-label="add design board">add</mat-icon>
           </button>
         </div>
-        <div>
-          hello - here we will have the image
+        <div fxLayout="row" fxLayoutWrap>
+          <mat-card class="shoppingList-card" *ngFor="let item of project.shoppingList; let idx = index">
+            <img mat-card-image [src]="item.src" alt="shopping list item picture">
+            <mat-card-content>
+              <mat-form-field>
+                  <span matPrefix>$ &nbsp;</span>
+                <input matInput placeholder="Enter item price (each)" type="number" [(ngModel)]="item.price" required>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Enter item quantity" type="number" [(ngModel)]="item.quantity" required>
+              </mat-form-field>
+              <mat-form-field>
+                <textarea matInput placeholder="Description"></textarea>
+              </mat-form-field>
+            </mat-card-content>
+            <mat-form-field>
+              <input matInput placeholder="Enter full link path" [(ngModel)]="item.link" required>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Enter link text" [(ngModel)]="item.linkText" required>
+            </mat-form-field>
+            <div fxLayout="column"fxLayoutAlign="center center" fxLayoutGap="10px">
+              <input type="file" accept="image/*" (change)="loadImg($event,'shoppingList',idx)">
+              <button mat-button (click)="openDialog('shoppingList',idx)">DELETE THIS ITEM</button>
+            </div>
+          </mat-card>
         </div>
       </mat-expansion-panel>
     </mat-accordion>

@@ -26,5 +26,15 @@
     height: auto;
 }
 .add-button{
-    margin-bottom:20px;
+    margin-bottom:10px;
+}
+.shoppingList-card{
+    max-width:280px;
+    margin:10px;
+}
+.mat-form-field{
+    width: 100%;
+}
+textarea{
+    height: 100px;
 }

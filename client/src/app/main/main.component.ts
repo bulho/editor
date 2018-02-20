@@ -23,15 +23,22 @@ export class MainComponent implements OnInit {
     renderings: [],
     shoppingList: []
   }
+  overwriteProject = {
+    name: "",
+    id: "",
+    designBoard: [],
+    renderings: [],
+    shoppingList: []
+  }
+  editMode = false;
 
   //generates project json file
   print() {
-    console.log(this.project);
-    /*var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.project));
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.project));
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
     dlAnchorElem.setAttribute("href", dataStr);
-    dlAnchorElem.setAttribute("download", "scene.json");
-    dlAnchorElem.click();*/
+    dlAnchorElem.setAttribute("download", this.project.name + ".json");
+    dlAnchorElem.click();
   }
 
   //adds or deletes an item
@@ -71,18 +78,29 @@ export class MainComponent implements OnInit {
   }
 
   //manages confirm dialog
-  openDialog(item, idx): void {
+  openDialog(item, idx, ow): void {
+    
+    if (!ow) ow = false;
     let dialogRef = this.dialog.open(ConfirmComponent, {
-      data: { area: item, index: idx }
+      data: { area: item, index: idx, overwrite: ow }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      if (result) this.edit(item,'delete',idx);
+      if (result === 'delete') this.edit(item, 'delete', idx);
+      if (result === 'overwrite') this.project = this.overwriteProject;
     });
   }
 
-
+  //loads project file
+  loadProject($event): void {
+    this.upload.project($event).subscribe((p) => {
+      this.overwriteProject = JSON.parse(p);
+      this.openDialog('',0,true);
+    }, (error) => {
+      console.log(error);
+    });
+    ;
+  }
 
 
 }

@@ -12,10 +12,15 @@ export class ConfirmComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     dialogData;
+    result = null
+    message = "Are you sure you want to delete this item?"
 
     ngOnInit() {
       this.dialogData = this.data;
-      console.log(this.dialogData);
+      if (this.dialogData.overwrite) {
+        this.result = 'overwrite';
+        this.message = "Are you sure you want to open this project? \n This will overwrite all information and you will lose your changes."
+      } else this.result = 'delete';
     }
   
     onNoClick(): void {

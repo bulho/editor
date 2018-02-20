@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
-import { MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatExpansionModule, MatProgressBarModule, MatCheckboxModule, MatSliderModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatExpansionModule, MatProgressBarModule, MatCheckboxModule, MatSliderModule, MatProgressSpinnerModule, MatSlideToggleModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -23,7 +23,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FlexLayoutModule, HttpClientModule, FormsModule,
-    MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatExpansionModule, MatProgressBarModule, MatCheckboxModule, MatSliderModule, MatProgressSpinnerModule,
+    MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatExpansionModule, MatProgressBarModule, MatCheckboxModule, MatSliderModule, MatProgressSpinnerModule, MatSlideToggleModule
     RoutingModule, UploadModule
   ],
   providers: [],
