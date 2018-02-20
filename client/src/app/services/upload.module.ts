@@ -10,7 +10,7 @@ import { Observable } from "rxjs/Observable"
 })
 export class UploadModule {
 
-  getFile(e) {
+  image(e) {
     const file = e.target.files[0];
     let pattern = /image-*/;
     console.log(file);

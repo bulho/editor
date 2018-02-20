@@ -12,12 +12,14 @@ import { AppComponent } from './app.component';
 import { RoutingModule } from './services/routing.module';
 import { UploadModule } from './services/upload.module';
 import { MainComponent } from './main/main.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FlexLayoutModule, HttpClientModule, FormsModule,
@@ -25,6 +27,7 @@ import { MainComponent } from './main/main.component';
     RoutingModule, UploadModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ConfirmComponent]
 })
 export class AppModule { }
