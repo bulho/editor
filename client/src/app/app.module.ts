@@ -6,8 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatExpansionModule, MatProgressBarModule, MatCheckboxModule, MatSliderModule, MatProgressSpinnerModule, MatSlideToggleModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 
-
-
 import { AppComponent } from './app.component';
 import { RoutingModule } from './services/routing.module';
 import { UploadModule } from './services/upload.module';
@@ -23,7 +21,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, FlexLayoutModule, HttpClientModule, FormsModule,
-    MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatExpansionModule, MatProgressBarModule, MatCheckboxModule, MatSliderModule, MatProgressSpinnerModule, MatSlideToggleModule
+    MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatDialogModule, MatExpansionModule, MatProgressBarModule, MatCheckboxModule, MatSliderModule, MatProgressSpinnerModule, MatSlideToggleModule,
     RoutingModule, UploadModule
   ],
   providers: [],

@@ -1,8 +1,8 @@
 <mat-toolbar>
-  <input type="file" (change)="loadProject($event)" >
+  <input type="file" (change)="loadProject($event)">
   <span fxFlex></span>
   <button mat-mini-fab (click)="print()" [disabled]="project.name==='' || project.id===''">
-      <mat-icon aria-label="download">file_download</mat-icon>
+    <mat-icon aria-label="download">file_download</mat-icon>
   </button>
 </mat-toolbar>
 
@@ -30,8 +30,8 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayoutAlign="center center">
-          <button mat-mini-fab class="add-button" (click)="edit('designBoard','add')">
-            <mat-icon aria-label="add design board">add</mat-icon>
+          <button mat-button class="add-button" (click)="edit('designBoard','add')">
+            <mat-icon aria-label="add design board">add</mat-icon>ADD ITEM
           </button>
         </div>
         <div *ngFor="let item of project.designBoard; let idx = index" style="padding-bottom:20px;">
@@ -55,8 +55,8 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div fxLayout="column" fxLayoutAlign="center center">
-          <button mat-mini-fab class="add-button" (click)="edit('renderings','add')">
-            <mat-icon aria-label="add design board">add</mat-icon>
+          <button mat-button class="add-button" (click)="edit('renderings','add')">
+            <mat-icon aria-label="add design board">add</mat-icon> ADD ITEM
           </button>
         </div>
         <div *ngFor="let item of project.renderings; let idx = index">
@@ -68,6 +68,7 @@
             <span fxFlex></span>
             <button mat-button (click)="openDialog('renderings',idx)">Delete this item</button>
           </div>
+          <mat-divider></mat-divider>
         </div>
       </mat-expansion-panel>
 
@@ -86,9 +87,10 @@
         <div fxLayout="row" fxLayoutWrap>
           <mat-card class="shoppingList-card" *ngFor="let item of project.shoppingList; let idx = index">
             <img mat-card-image [src]="item.src" alt="shopping list item picture">
+            <input type="file" accept="image/*" (change)="loadImg($event,'shoppingList',idx)" style="padding-bottom:20px;">
             <mat-card-content>
               <mat-form-field>
-                  <span matPrefix>$ &nbsp;</span>
+                <span matPrefix>$ &nbsp;</span>
                 <input matInput placeholder="Enter item price (each)" type="number" [(ngModel)]="item.price" required>
               </mat-form-field>
               <mat-form-field>
@@ -104,8 +106,7 @@
             <mat-form-field>
               <input matInput placeholder="Enter link text" [(ngModel)]="item.linkText" required>
             </mat-form-field>
-            <div fxLayout="column"fxLayoutAlign="center center" fxLayoutGap="10px">
-              <input type="file" accept="image/*" (change)="loadImg($event,'shoppingList',idx)">
+            <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">              
               <button mat-button (click)="openDialog('shoppingList',idx)">DELETE THIS ITEM</button>
             </div>
           </mat-card>
