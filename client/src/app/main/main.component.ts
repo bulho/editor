@@ -58,8 +58,7 @@ export class MainComponent implements OnInit {
           "description": "enter item description",
           "quantity": 0,
           "price": 0,
-          "link": "enter full link address here",
-          "linkText": "enter link text here"
+          "link": "enter full link address here"
         });
       if (action === 'delete') this.project.shoppingList.splice(idx, 1);
     }

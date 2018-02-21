@@ -6,35 +6,36 @@
   </button>
 </mat-toolbar>
 
-<div class="frame" fxLayout="column" fxLayoutAlign="center center">
 
 
-  <div class="project-area">
-    <a id="downloadAnchorElem"></a>
 
-    <div fxLayout="column" fxLayoutAlign="center center">
-      <mat-form-field>
-        <input matInput placeholder="Project Id" [(ngModel)]="project.id" required>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Project name" [(ngModel)]="project.name" required>
-      </mat-form-field>
-    </div>
+<div class="project-area">
+  <a id="downloadAnchorElem"></a>
 
-    <!-- Design Board -->
-    <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Design Board
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div fxLayout="column" fxLayoutAlign="center center">
-          <button mat-button class="add-button" (click)="edit('designBoard','add')">
-            <mat-icon aria-label="add design board">add</mat-icon>ADD ITEM
-          </button>
-        </div>
-        <div *ngFor="let item of project.designBoard; let idx = index" style="padding-bottom:20px;">
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field>
+      <input matInput placeholder="Project Id" [(ngModel)]="project.id" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Project name" [(ngModel)]="project.name" required>
+    </mat-form-field>
+  </div>
+
+  <!-- Design Board -->
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Design Board
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <button mat-button class="add-button" (click)="edit('designBoard','add')">
+          <mat-icon aria-label="add design board">add</mat-icon>ADD ITEM
+        </button>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap>
+        <div *ngFor="let item of project.designBoard; let idx = index" class="prev-img-item" fxFlex>
           <div class="ad-image">
             <img [(src)]="item.src" alt="">
           </div>
@@ -43,23 +44,24 @@
             <span fxFlex></span>
             <button mat-button (click)="openDialog('designBoard',idx)">Delete this item</button>
           </div>
-          <mat-divider></mat-divider>
         </div>
-      </mat-expansion-panel>
+      </div>
+    </mat-expansion-panel>
 
-      <!-- Renderings -->
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Renderings
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div fxLayout="column" fxLayoutAlign="center center">
-          <button mat-button class="add-button" (click)="edit('renderings','add')">
-            <mat-icon aria-label="add design board">add</mat-icon> ADD ITEM
-          </button>
-        </div>
-        <div *ngFor="let item of project.renderings; let idx = index">
+    <!-- Renderings -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Renderings
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <button mat-button class="add-button" (click)="edit('renderings','add')">
+          <mat-icon aria-label="add design board">add</mat-icon> ADD ITEM
+        </button>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap>
+        <div *ngFor="let item of project.renderings; let idx = index" class="prev-img-item" fxFlex>
           <div class="ad-image">
             <img [src]="item.src" alt="">
           </div>
@@ -70,50 +72,100 @@
           </div>
           <mat-divider></mat-divider>
         </div>
-      </mat-expansion-panel>
+      </div>
+    </mat-expansion-panel>
 
-      <!-- Shopping List -->
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Shopping List
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div fxLayout="column" fxLayoutAlign="center center">
-          <button mat-mini-fab class="add-button" (click)="edit('shoppingList','add')">
-            <mat-icon aria-label="add design board">add</mat-icon>
-          </button>
-        </div>
-        <div fxLayout="row" fxLayoutWrap>
-          <mat-card class="shoppingList-card" *ngFor="let item of project.shoppingList; let idx = index">
-            <img mat-card-image [src]="item.src" alt="shopping list item picture">
-            <input type="file" accept="image/*" (change)="loadImg($event,'shoppingList',idx)" style="padding-bottom:20px;">
-            <mat-card-content>
-              <mat-form-field>
-                <span matPrefix>$ &nbsp;</span>
-                <input matInput placeholder="Enter item price (each)" type="number" [(ngModel)]="item.price" required>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Enter item quantity" type="number" [(ngModel)]="item.quantity" required>
-              </mat-form-field>
-              <mat-form-field>
-                <textarea matInput placeholder="Description"></textarea>
-              </mat-form-field>
-            </mat-card-content>
+    <!-- Shopping List -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Shopping List
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <button mat-button class="add-button" (click)="edit('shoppingList','add')">
+          <mat-icon aria-label="add design board">add</mat-icon> ADD ITEM
+        </button>
+      </div>
+      <div fxLayout="row" fxLayoutWrap>
+        <mat-card class="shoppingList-card" *ngFor="let item of project.shoppingList; let idx = index">
+          <img mat-card-image [src]="item.src" alt="shopping list item picture">
+          <input type="file" accept="image/*" (change)="loadImg($event,'shoppingList',idx)" style="padding-bottom:20px;">
+          <mat-card-content>
             <mat-form-field>
-              <input matInput placeholder="Enter full link path" [(ngModel)]="item.link" required>
+              <span matPrefix>$ &nbsp;</span>
+              <input matInput placeholder="Enter item price (each)" type="number" [(ngModel)]="item.price" required>
             </mat-form-field>
             <mat-form-field>
-              <input matInput placeholder="Enter link text" [(ngModel)]="item.linkText" required>
+              <input matInput placeholder="Enter item quantity" type="number" [(ngModel)]="item.quantity" required>
             </mat-form-field>
-            <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">              
-              <button mat-button (click)="openDialog('shoppingList',idx)">DELETE THIS ITEM</button>
-            </div>
-          </mat-card>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
+            <mat-form-field>
+              <textarea matInput placeholder="Description" [(ngModel)]="item.description"></textarea>
+            </mat-form-field>
+          </mat-card-content>
+          <mat-form-field>
+            <input matInput placeholder="Enter full link path" [(ngModel)]="item.link" required>
+          </mat-form-field>
+          <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+            <button mat-button (click)="openDialog('shoppingList',idx)">DELETE THIS ITEM</button>
+          </div>
+        </mat-card>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 
+</div>
+
+<!-- Preview Area -->
+<div class="preview">
+
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <h1>{{project.name}}</h1>
+  </div>
+
+  <div class="prev-section-area">
+    <h2>Design Board</h2>
+    <div fxLayout="row" fxLayoutWrap fxLayoutAlign="center center">
+      <div *ngFor="let item of project.designBoard" class="prev-img-item" fxFlex>
+        <div class="ad-image">
+          <img [src]="item.src" alt="">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="prev-section-area">
+    <h2>Renderings</h2>
+    <div fxLayout="row" fxLayoutWrap fxLayoutAlign="center center">
+      <div *ngFor="let item of project.renderings" class="prev-img-item" fxFlex>
+        <div class="ad-image">
+          <img [src]="item.src" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prev-section-area">
+    <h2>Shopping List</h2>
+    <div fxLayout="row" fxLayoutWrap fxLayoutGap="10px" style="padding:5%">
+      <mat-card class="prev-shoppingList-card" *ngFor="let item of project.shoppingList; let idx = index">
+        <img mat-card-image [src]="item.src" alt="shopping list item picture">
+        <mat-card-content>
+          <div fxLayout="row" fxLayoutWrap>
+            <h1>$ {{item.price}} each</h1>
+            <span fxFlex></span>
+            <h1>Quantity: {{item.quantity}}</h1>
+          </div>
+          <div fxLayout="column" style="min-height:120px;">
+            <h1>{{item.description}}</h1>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>ORDER THIS ITEM</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
 
 </div>
